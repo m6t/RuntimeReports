@@ -1,0 +1,20 @@
+﻿M6T.Data.Reporting.RuntimeReports
+
+
+library
+C#
+.cs
+C:\Users\Alper\Documents\Visual Studio 2015\Projects\M6T.Data.Reporting.RuntimeReports\M6T.Data.Reporting.RuntimeReports\obj\Debug\
+M6T.Data.Reporting.RuntimeReports
+none
+false
+DEBUG;TRACE
+
+17-2062727786
+
+29158510329
+181728639053
+FilePathEditor.xaml;PropertyEditors\BoolEditor.xaml;PropertyEditors\ColorEditor.xaml;PropertyEditors\DataPathSelector.xaml;PropertyEditors\EnumEditor.xaml;PropertyEditors\ItemDeleter.xaml;PropertyEditors\SizeEditor.xaml;PropertyEditors\RectangleEditor.xaml;PropertyEditors\StaticPropertyGetter.xaml;ReportDesignerControl.xaml;ReportDesignerHubControl.xaml;ReportDesignerPropertiesControl.xaml;ReportDesignerToolBar.xaml;ReportFooterControl.xaml;PropertyEditors\IntEditor.xaml;PropertyEditors\SingleEditor.xaml;PropertyEditors\StringEditor.xaml;
+
+False
+

@@ -1,0 +1,13 @@
+﻿<UserControl x:Class="M6T.Data.Reporting.RuntimeReports.ReportFooterControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:M6T.Data.Reporting.RuntimeReports"
+             mc:Ignorable="d" 
+             d:DesignHeight="121.111" d:DesignWidth="643.333">
+    <Grid>
+        <ListBox x:Name="listBox" SelectionChanged="listBox_SelectionChanged" Background="{x:Null}"/>
+
+    </Grid>
+</UserControl>

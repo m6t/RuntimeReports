@@ -1,0 +1,13 @@
+﻿<UserControl x:Class="M6T.Data.Reporting.RuntimeReports.ReportDesignerToolBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:M6T.Data.Reporting.RuntimeReports"
+             mc:Ignorable="d" Background="#FFA4A4A4" Height="372.606" Width="215.426">
+    <Grid>
+        <ListBox x:Name="items" Margin="0,0,0,20" Background="{x:Null}" MouseDoubleClick="items_MouseDoubleClick"/>
+        <Button x:Name="button" Content="Ekle" VerticalAlignment="Bottom" Click="button_Click"/>
+
+    </Grid>
+</UserControl>

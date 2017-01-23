@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="M6T.Data.Reporting.RuntimeReports.ReportDesignerControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:M6T.Data.Reporting.RuntimeReports"
+             mc:Ignorable="d" Background="#FF8D8D8D" Height="381" Width="306">
+    <Grid>
+        <Border x:Name="imgborder" HorizontalAlignment="Left" VerticalAlignment="Top" >
+            <Grid x:Name="reportimage" MouseWheel="reportimage_MouseWheel" PreviewMouseLeftButtonDown="reportimage_PreviewMouseLeftButtonDown" MouseMove="reportimage_MouseMove" PreviewMouseLeftButtonUp="reportimage_PreviewMouseLeftButtonUp" RenderTransformOrigin="1,1" KeyDown="reportimage_KeyDown" KeyUp="reportimage_KeyUp" >
+                <Grid.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform x:Name="scaletrfm"/>
+                        <SkewTransform/>
+                        <RotateTransform x:Name="rtt"/>
+                        <TranslateTransform x:Name="translatetrfrm"/>
+                    </TransformGroup>
+                </Grid.RenderTransform>
+            </Grid>
+        </Border>
+        <TextBox IsReadOnly="True" x:Name="zoomtext" HorizontalAlignment="Left" TextWrapping="Wrap" Text="100 %" VerticalAlignment="Bottom"/>
+        <TextBox IsReadOnly="True" x:Name="zoomtext_Copy" HorizontalAlignment="Right" TextWrapping="Wrap" Text="Boşluk Tuşu : Haraket Ettir    -- Mouse orta tuşu : Yakınlaştır / Uzaklaştır" VerticalAlignment="Bottom" Margin="0"/>
+    </Grid>
+</UserControl>

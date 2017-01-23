@@ -1,0 +1,18 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:M6T.Data.Reporting.RuntimeReports.PropertyEditors"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="M6T.Data.Reporting.RuntimeReports.PropertyEditors.ColorEditor"
+             mc:Ignorable="d" d:DesignWidth="300" Height="35.036" Background="#FF252526">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <xctk:ColorPicker x:Name="clrpcker" Margin="10,5,10,0" Grid.Column="1" VerticalAlignment="Top" Closed="clrpcker_Closed" MouseUp="clrpcker_MouseUp" Background="#FF252526"/>
+        <Label x:Name="isim" Content="Label" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center"/>
+
+    </Grid>
+</UserControl>
