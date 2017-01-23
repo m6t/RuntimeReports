@@ -153,6 +153,10 @@ namespace M6T.Data.Reporting.RuntimeReports
         }
         private void button1_Click(object sender, RoutedEventArgs e)
         {
+            Save();
+        }
+        public void Save()
+        {
             if (CanOpenOrCreate)
             {
                 System.Windows.Forms.SaveFileDialog ofd = new System.Windows.Forms.SaveFileDialog();
@@ -167,10 +171,8 @@ namespace M6T.Data.Reporting.RuntimeReports
             {
                 Save(FixedReportFileName);
             }
-
         }
-
-        private void Save(string filename)
+        public void Save(string filename)
         {
             List<Type> types = new List<Type>();
             foreach (var item in this.report.Items)
