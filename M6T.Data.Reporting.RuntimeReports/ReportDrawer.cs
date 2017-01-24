@@ -12,12 +12,12 @@ namespace M6T.Data.Reporting.RuntimeReports
 {
     public class ReportDrawer
     {
-        public static System.Windows.Shapes.Rectangle selectRed;
-        public static System.Windows.Shapes.Rectangle solust;
-        public static System.Windows.Shapes.Rectangle sagalt;
-        public static System.Windows.Shapes.Ellipse corner;
-        public static Canvas bgr;
-        public static void ForceBackgroundRedraw()
+        public System.Windows.Shapes.Rectangle selectRed;
+        public System.Windows.Shapes.Rectangle solust;
+        public System.Windows.Shapes.Rectangle sagalt;
+        public System.Windows.Shapes.Ellipse corner;
+        public Canvas bgr;
+        public void ForceBackgroundRedraw()
         {
             if (bgr != null)
                 bgr.Children.Clear();
@@ -27,32 +27,43 @@ namespace M6T.Data.Reporting.RuntimeReports
             sagalt = null;
             solust = null;
         }
-        public static bool IsCornerCaptured = false;
-        public static Canvas DrawReport(M6TReport Report, object data, bool YazdirmaIslemi = false)
+        public bool IsCornerCaptured = false;
+        public Canvas DrawReport(M6TReport Report, object data, bool YazdirmaIslemi = false, bool useBottomCorner = true, bool DisableCorners = false)
         {
             if (bgr == null)
             {
                 bgr = new Canvas();
-                solust = new System.Windows.Shapes.Rectangle();
-                solust.Width = 2;
-                solust.Height = 2;
-                solust.Name = "selectionred";
-                solust.Fill = Brushes.Black;
-                solust.StrokeThickness = 0;
-                solust.VerticalAlignment = VerticalAlignment.Top;
-                solust.HorizontalAlignment = HorizontalAlignment.Left;
-                solust.Margin = new Thickness(0);
-                bgr.Children.Add(solust);
-                sagalt = new System.Windows.Shapes.Rectangle();
-                sagalt.Width = 2;
-                sagalt.Height = 2;
-                sagalt.Fill = Brushes.Black;
-                sagalt.StrokeThickness = 0;
-                sagalt.Name = "selectionred";
-                sagalt.VerticalAlignment = VerticalAlignment.Top;
-                sagalt.HorizontalAlignment = HorizontalAlignment.Left;
-                sagalt.Margin = new Thickness(Report.Page.ReportWidth - 2, Report.Page.ReportHeight - 2, 0, 0);
-                bgr.Children.Add(sagalt);
+                if (!DisableCorners)
+                {
+                    solust = new System.Windows.Shapes.Rectangle();
+                    solust.Width = 2;
+                    solust.Height = 2;
+                    solust.Name = "selectionred";
+                    solust.Fill = Brushes.Black;
+                    solust.StrokeThickness = 0;
+                    solust.VerticalAlignment = VerticalAlignment.Top;
+                    solust.HorizontalAlignment = HorizontalAlignment.Left;
+                    solust.Margin = new Thickness(0);
+                    bgr.Children.Add(solust);
+                    sagalt = new System.Windows.Shapes.Rectangle();
+                    sagalt.Width = 2;
+                    sagalt.Height = 2;
+                    sagalt.Fill = Brushes.Black;
+                    sagalt.StrokeThickness = 0;
+                    sagalt.Name = "selectionred";
+                    sagalt.VerticalAlignment = VerticalAlignment.Top;
+                    sagalt.HorizontalAlignment = HorizontalAlignment.Left;
+                    if (useBottomCorner)
+                    {
+                        sagalt.Margin = new Thickness(Report.Page.ReportWidth - 2, Report.Page.ReportHeight - 2, 0, 0);
+                        bgr.Children.Add(sagalt);
+                    }
+                    else
+                    {
+                        sagalt.Margin = new Thickness(Report.Page.ReportWidth - 2, 0, 0, 0);
+                        bgr.Children.Add(sagalt);
+                    }
+                }
                 selectRed = new System.Windows.Shapes.Rectangle();
                 selectRed.Fill = Brushes.Transparent;
                 selectRed.Stroke = Brushes.Red;
@@ -75,8 +86,11 @@ namespace M6T.Data.Reporting.RuntimeReports
                 bgr.Children.Add(corner);
                 Panel.SetZIndex(selectRed, 99990);
                 Panel.SetZIndex(corner, 99991);
-                Panel.SetZIndex(solust, 99992);
-                Panel.SetZIndex(sagalt, 99993);
+                if (!DisableCorners)
+                {
+                    Panel.SetZIndex(solust, 99992);
+                    Panel.SetZIndex(sagalt, 99993);
+                }
                 bgr.Width = Report.Page.ReportWidth;
                 bgr.Height = Report.Page.ReportHeight;
                 if (Report.Page.BackgroundType == ReportBackgroundType.Color)
@@ -191,24 +205,24 @@ namespace M6T.Data.Reporting.RuntimeReports
             }
             return bgr;
         }
-        public static bool CornerResize = false;
-        private static void Corner_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        public bool CornerResize = false;
+        private void Corner_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {
             IsCornerCaptured = false;
         }
 
-        private static void Corner_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+        private void Corner_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
         {
             IsCornerCaptured = true;
         }
 
-        private static void Corner_MouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void Corner_MouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             IsCornerCaptured = false;
             CornerResize = false;
         }
 
-        private static void Corner_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void Corner_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             IsCornerCaptured = true;
             CornerResize = true;

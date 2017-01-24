@@ -31,11 +31,18 @@ namespace M6T.Data.Reporting.RuntimeReports
             System.Windows.EventManager.RegisterClassHandler(typeof(Control), KeyUpEvent, new KeyEventHandler(reportimage_KeyUp));
 
         }
+        public ReportDrawer ReportDrawer
+        {
+            get
+            {
+                return Hub.ReportDrawer;
+            }
+        }
         public void DrawFrame()
         {
             if (Report != null)
             {
-                Canvas cvs = ReportDrawer.DrawReport(Report, SampleData, Hub.PrintMode);
+                Canvas cvs = ReportDrawer.DrawReport(Report, SampleData, Hub.PrintMode, Hub.UseBottomCornerFixture, Hub.DisableCorners);
                 try
                 {
                     if (!reportimage.Children.Contains(cvs))

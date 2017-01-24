@@ -24,6 +24,7 @@ namespace M6T.Data.Reporting.RuntimeReports
         public ReportDesignerHubControl()
         {
             InitializeComponent();
+            UseBottomCornerFixture = true;
             ReportElementPool.Init();
         }
         public bool _canOpenCreate = true;
@@ -54,6 +55,22 @@ namespace M6T.Data.Reporting.RuntimeReports
         {
             get; private set;
         }
+        public bool UseBottomCornerFixture
+        {
+            get; private set;
+        }
+        public bool DisableCorners
+        {
+            get; private set;
+        }
+        public void DisableBottomCornerFixture()
+        {
+            UseBottomCornerFixture = false;
+        }
+        public void DisableCornersEntirely()
+        {
+            DisableCorners = true;
+        }
         public void EnablePrintMode()
         {
             PrintMode = true;
@@ -75,6 +92,32 @@ namespace M6T.Data.Reporting.RuntimeReports
             ReportDrawer.ForceBackgroundRedraw();
             InvokeUpdated();
         }
+
+        #region ReportDrawer Property
+        private ReportDrawer _ReportDrawer = null;
+        public ReportDrawer ReportDrawer
+        {
+            get
+            {
+                if (_ReportDrawer == null)
+                {
+                    _ReportDrawer = new ReportDrawer();
+                }
+                return _ReportDrawer;
+            }
+            set
+            {
+                _ReportDrawer = value;
+
+            }
+        }
+        #endregion
+        public void ForceRedraw()
+        {
+            SetReport(report, SampleData);
+            ReportDrawer.ForceBackgroundRedraw();
+            designer.DrawFrame();
+        }
         public FrameworkElement GetReportRootVisualElement()
         {
             return designer.GetReportRootVisualElement();
@@ -91,6 +134,8 @@ namespace M6T.Data.Reporting.RuntimeReports
         System.Windows.Forms.Timer frameTicker = new System.Windows.Forms.Timer();
         public void SetReport(M6TReport report, object SampleData)
         {
+            if (report == null)
+                return;
             this.report = report;
             this.SampleData = SampleData;
             width.Text = report.Page.ReportWidth + "";
@@ -150,6 +195,7 @@ namespace M6T.Data.Reporting.RuntimeReports
         public void SetSample(object data)
         {
             SampleData = data;
+            SetReport(report, SampleData);
         }
         private void button1_Click(object sender, RoutedEventArgs e)
         {
