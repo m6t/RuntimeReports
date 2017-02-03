@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows;
+using System.IO;
 
 namespace M6T.Data.Reporting.RuntimeReports
 {
@@ -106,16 +107,23 @@ namespace M6T.Data.Reporting.RuntimeReports
                     }
                     else
                     {
-                        Image a = new Image();
-                        a.Stretch = Stretch.Fill;
-                        a.HorizontalAlignment = HorizontalAlignment.Stretch;
-                        a.VerticalAlignment = VerticalAlignment.Stretch;
-                        a.Name = "backgroundimg";
-                        a.Width = Report.Page.ReportWidth;
-                        a.Height = Report.Page.ReportHeight;
-                        a.Margin = new Thickness(0);
-                        a.Source = Helper.BitmapToImageSource(new System.Drawing.Bitmap(Report.Page.BackgroundImage.Path));
-                        bgr.Children.Add(a);
+                        if (File.Exists(Report.Page.BackgroundImage.Path))
+                        {
+                            Image a = new Image();
+                            a.Stretch = Stretch.Fill;
+                            a.HorizontalAlignment = HorizontalAlignment.Stretch;
+                            a.VerticalAlignment = VerticalAlignment.Stretch;
+                            a.Name = "backgroundimg";
+                            a.Width = Report.Page.ReportWidth;
+                            a.Height = Report.Page.ReportHeight;
+                            a.Margin = new Thickness(0);
+                            a.Source = Helper.BitmapToImageSource(new System.Drawing.Bitmap(Report.Page.BackgroundImage.Path));
+                            bgr.Children.Add(a);
+                        }
+                        else
+                        {
+                            bgr.Background = Brushes.White;
+                        }
                     }
                 }
                 else
